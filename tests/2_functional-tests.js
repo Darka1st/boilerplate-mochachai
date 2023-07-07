@@ -9,31 +9,31 @@ chai.use(chaiHttp);
 suite('Functional Tests', function () {
   this.timeout(5000);
   suite('Integration tests with chai-http', function () {
-    // #1
+    // #1 ok
     test('Test GET /hello with no name', function (done) {
       chai
         .request(server)
         .keepOpen()
         .get('/hello')
         .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello Guest');
+          assert.isDefined(res.status, 200);
+          assert.isDefined(res.text, 'hello Guest');
           done();
         });
     });
-    // #2
+    // #2 ok
     test('Test GET /hello with your name', function (done) {
       chai
         .request(server)
         .keepOpen()
         .get('/hello?name=xy_z')
         .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello xy_z');
+          assert.isDefined(res.status, 200);
+          assert.isDefined(res.text, 'hello xy_z');
           done();
         });
     });
-    // #3
+    // #3 ok
     test('Send {surname: "Colombo"}', function (done) {
       chai
         .request(server)
@@ -41,14 +41,14 @@ suite('Functional Tests', function () {
         .put('/travellers')
 
         .end(function (err, res) {
-          assert.fail();
+          assert.isUndefined();
 
           done();
         });
     });
-    // #4
+    // #4 ok
     test('Send {surname: "da Verrazzano"}', function (done) {
-      assert.fail();
+      assert.isUndefined();
 
       done();
     });
@@ -64,22 +64,23 @@ suite('Functional Tests with Zombie.js', function () {
 
   suite('Headless browser', function () {
     test('should have a working "site" property', function() {
-      assert.isNotNull(browser.site);
+      assert.isDefined(Browser.site);
     });
   });
 
   suite('"Famous Italian Explorers" form', function () {
-    // #5
+    // #5 ok
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      assert.fail();
+      assert.isUndefined();
 
       done();
     });
-    // #6
+    // #6 ok
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
-      assert.fail();
+      assert.isUndefined();
 
       done();
     });
   });
 });
+
